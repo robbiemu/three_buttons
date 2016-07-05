@@ -1,12 +1,13 @@
 /* global $ */
 class GameEngine {
   start () {
+    console.log('[GameEngine] starting')
     this.splash()
   }
 
   cycle_sections (section) {
     $(`section#content > div#${section}`).css('display', 'initial')
-    $(`section#content > div:not("${section}")`).css('display', 'none')
+  //  $('section#content > div').not(section).css('display', 'none')
   }
 
   splash () {

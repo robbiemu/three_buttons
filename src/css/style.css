@@ -1,33 +1,45 @@
 :root {
-  green-gray: rgb(127,200,127);
-  mauve: rgb(200,127,127);
+  --green-gray: rgb(127,200,127);
+  --mauve: rgb(200,127,127);
 }
 
 body {
   font-size: 16pt;
   font-family: Roboto, Helvetica, Consolas, sans;
   background-color: black;
+  color: white;
 }
-
-div#splash {
-  background-color: gray;
-}
-
-div#splash > div#logo {
-  font-size: 33vh;
-  font-family: "comic sans", fantasy, serif;
-  font-weight: 800;
-}
-
-div#splash > div#start {
-
-}
-
 
 div#game {
-  background-color: green-gray;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
 }
 
-div#scores {
-  background-color: mauve;
+div#game > div {
+  flex: 1;
+  height: 100vh;
+  min-width: calc(100vw/3);
+  min-height: 100vh;
+}
+
+#modifier, #autoclick {
+  background-color: --mauve;
+}
+#per_click {
+  background-clor: --green-gray;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.button {
+  cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
 }
