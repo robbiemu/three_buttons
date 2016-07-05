@@ -1,0 +1,33 @@
+:root {
+  green-gray: rgb(127,200,127);
+  mauve: rgb(200,127,127);
+}
+
+body {
+  font-size: 16pt;
+  font-family: Roboto, Helvetica, Consolas, sans;
+  background-color: black;
+}
+
+div#splash {
+  background-color: gray;
+}
+
+div#splash > div#logo {
+  font-size: 33vh;
+  font-family: "comic sans", fantasy, serif;
+  font-weight: 800;
+}
+
+div#splash > div#start {
+
+}
+
+
+div#game {
+  background-color: green-gray;
+}
+
+div#scores {
+  background-color: mauve;
+}
