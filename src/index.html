@@ -7,21 +7,24 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/core_game.js"></script>
-  <script type="text/javascript" src="js/game_init.js"></script>
+  <script type="text/javascript" src="js/game.js"></script>
 </head>
 <body>
   <section id="content">
     <div id="top">Points: <span id="points_numeric"></span></div>
     <div id="game">
       <div id="left">
+        <div id="current_modifiers"></div>
         <div id="modifier" class="round button">+<span id="modifier_text">1</span></div>
+        <div id="modifiers_cost"></div>
       </div>
       <div id="mid">
         <div id="per_click" class="round button">+<span id="per_click_text">1</span></div>
       </div>
       <div id="right">
+        <div id="count_of_autoclickers"></div>
         <div id="autoclick" class="round button">+<span id="autoclick_text">1</span></div>
+        <div id="autoclick_cost"></div>
       </div>
     </div>
   </section>
