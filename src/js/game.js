@@ -23,15 +23,15 @@ var Vars = { }
 
 function updateButtonCost () {
   if (Vars.points >= Vars.modifier.cost) {
-    $('#modifier').css('background-color', 'rgb(200,127,127)')
+    $('#modifier').css({'background-color': 'rgb(200,127,127)', "cursor" : "pointer"})
   } else {
-    $('#modifier').css('background-color', 'gray')
+    $('#modifier').css({'background-color': 'gray', "cursor": "default"})
   }
 
   if (Vars.points >= Vars.autoclick.cost) {
-    $('#autoclick').css('background-color', 'rgb(200,127,127)')
+    $('#autoclick').css({'background-color': 'rgb(200,127,127)', "cursor" : "pointer"})
   } else {
-    $('#autoclick').css('background-color', 'gray')
+    $('#autoclick').css({'background-color': 'gray', "cursor" : "default"})
   }
 }
 
