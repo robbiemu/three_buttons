@@ -2,6 +2,7 @@
 class AutoclickAgent {
   constructor () {
     this.base_time = 1
+    sfx('resources/Goofy Yell.mp3').playclip()
   }
 
   act () {
