@@ -37,17 +37,20 @@ function updateButtonCost () {
 
 function updateDisplayVariables () {
   $('#points_numeric').text(((Vars.points.toFixed(3)*1000)/1000).toString())
+  $('#per_click_text').text(Vars.modifier.current * Vars.per_click)
   $('#modifiers_cost').text(Vars.modifier.cost)
   $('#current_modifiers').text(Vars.modifier.current)
+  $('#modifier_text').text(50)
   $('#count_of_autoclickers').text(Vars.autoclick.agents.length)
   $('#autoclick_cost').text(((Vars.autoclick.cost.toFixed(3) * 1000)/1000).toString())
+  $('#autoclick_text').text(1)
 }
 
 function game_init () {
   Vars.modifier = { current: 1, cost: 100, increment: 0.5 }
   Vars.autoclick = { agents: [], cost: 100 }
   Vars.points = 0
-  Vars.per_click = 1
+  Vars.per_click = 100
   updateDisplayVariables()
 }
 
@@ -87,7 +90,7 @@ const generic_button_press = function () {
       break
     case 'per_click':
       console.log('per_click clicked')
-      Vars.points += Vars.modifier.current * Vars.per_click * 100
+      Vars.points += Vars.modifier.current * Vars.per_click
 
       if(Vars.modifier.cost/Vars.points > 100) {
         Vars.modifier.cost = (((Vars.modifier.cost/Vars.points).toFixed(3) * 1000)/1000)
