@@ -27,7 +27,8 @@ div#game > div:not(top) {
 }
 
 #modifier, #autoclick {
-  background-color: var(--mauve);
+/*  background-color: var(--mauve); */
+  background-color: gray;
 }
 #per_click {
   background-color: var(--greengray);
@@ -51,4 +52,8 @@ div#game > div:not(top) {
   -moz-user-select: none;      /* Firefox */
   -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;
+}
+
+#per_click:hover {
+  cursor: pointer
 }
