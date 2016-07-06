@@ -80,6 +80,10 @@ div#game > div:not(top) {
   user-select: none;
 }
 
+.button.clickable {
+  box-shadow: rgb(102, 102, 102) 10px 10px 15px 0px;
+}
+
 #per_click:hover {
   cursor: pointer
 }

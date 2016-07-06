@@ -1,12 +1,16 @@
 /* global $, sfx, AutoclickAgent */
 $().ready(() => {
   console.log('loading')
+
   game_init()
+
   Vars.audio = sfx('resources/Click Clock Wood.mp3')
   Vars.audio.loop = true
   Vars.audio.controls = true
   Vars.audio.isPlaying = false
+
   $('.button').click(generic_button_press)
+
   $('#modifier').hover(() => {
     if (Vars.points >= Vars.modifier.cost) {
       $(this).css('cursor', 'pointer')
@@ -21,11 +25,16 @@ $().ready(() => {
       $(this).css('cursor', 'default')
     }
   })
+
   $('#per_click').mousedown((e) => {
     if (e.which) {
       sfx('resources/Coins Thrown.mp3').playclip()
     }
+    $('#per_click').stop().animate({boxShadow: '3px 3px 3px', top: 3}, 'fast')
   })
+  .mouseup(() => { $('#per_click').stop().animate({boxShadow: '10px 10px 15px', top: 0}, 'fast') })
+  .addClass('clickable')
+
 })
 
 var Vars = {}
@@ -33,25 +42,33 @@ var Vars = {}
 function updateButtonCost () {
   if (Vars.points >= Vars.modifier.cost) {
     $('#modifier').css({'background-color': 'rgb(200,127,127)', 'cursor': 'pointer'})
+      .mousedown(() => { $('#modifier').stop().animate({boxShadow: '3px 3px 3px', top: 3}, 'fast') })
+      .mouseup(() => { $('#modifier').stop().animate({boxShadow: '10px 10px 15px', top: 0}, 'fast') })
+      .addClass('clickable')
   } else {
     $('#modifier').css({'background-color': 'gray', 'cursor': 'default'})
+      .removeClass('clickable')
   }
 
   if (Vars.points >= Vars.autoclick.cost) {
     $('#autoclick').css({'background-color': 'rgb(200,127,127)', 'cursor': 'pointer'})
+      .mousedown(() => { $('#autoclick').stop().animate({boxShadow: '3px 3px 3px', top: 3}, 'fast') })
+      .mouseup(() => { $('#autoclick').stop().animate({boxShadow: '10px 10px 15px', top: 0}, 'fast') })
+      .addClass('clickable')
   } else {
     $('#autoclick').css({'background-color': 'gray', 'cursor': 'default'})
+      .removeClass('clickable')
   }
 }
 
 function updateDisplayVariables () {
-  $('#points_numeric').text(((Vars.points.toFixed(3)*1000)/1000).toString())
+  $('#points_numeric').text(((Vars.points.toFixed(3) * 1000) / 1000).toString())
   $('#per_click_text').text(Vars.modifier.current * Vars.per_click)
   $('#modifiers_cost').text(Vars.modifier.cost)
   $('#current_modifiers').text(Vars.modifier.current)
   $('#modifier_text').text(50)
   $('#count_of_autoclickers').text(Vars.autoclick.agents.length)
-  $('#autoclick_cost').text(((Vars.autoclick.cost.toFixed(3) * 1000)/1000).toString())
+  $('#autoclick_cost').text(((Vars.autoclick.cost.toFixed(3) * 1000) / 1000).toString())
   $('#autoclick_text').text(1)
 }
 
