@@ -1,13 +1,37 @@
 :root {
+  --darkgray: rgb(50,50,50);
+  --lightgray: rgb(200,200,200);
   --greengray: rgb(127,200,127);
   --mauve: rgb(200,127,127);
 }
 
+html {
+  font-size: 2vw;
+}
+
 body {
-  font-size: 16pt;
   font-family: Roboto, Helvetica, Consolas, sans;
-  background-color: black;
+  background-color: var(--darkgray);
   color: white;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 900;
+  font-family: Futura, ‘Century Gothic’, AppleGothic, sans-serif
+}
+
+p {
+  font-style: italic;
+  font-family: Georgia, Times, ‘Times New Roman’, serif;
+  margin-top: 0;
+}
+
+section#content {
+  background-color: var(--lightgray);
+  font-size: 1.5rem;
 }
 
 div#game {
@@ -17,13 +41,15 @@ div#game {
   text-align: center;
 }
 
-
-
 div#game > div:not(top) {
   flex: 1;
   height: 100vh;
   min-height: 100vh;
-  padding: 4rem;
+  padding: 2rem;
+}
+
+#top, body > * {
+  padding: 1rem;
 }
 
 #modifier, #autoclick {
@@ -36,15 +62,15 @@ div#game > div:not(top) {
 
 .round {
   border-radius: 50%;
-  padding: calc(1em/3);
+  padding: calc(1rem/3);
 }
 
 .button {
   display: flex;
   justify-content: center; /* align horizontal */
   align-items: center; /* align vertical */
-  width: 4rem;
-  height: 4rem;
+  width: 16vw;
+  height: 16vw;
   cursor: default;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */

@@ -36,7 +36,7 @@ function updateButtonCost () {
 }
 
 function updateDisplayVariables () {
-  $('#points_numeric').text(Vars.points)
+  $('#points_numeric').text(((Vars.points.toFixed(3)*1000)/1000).toString())
   $('#modifiers_cost').text(Vars.modifier.cost)
   $('#current_modifiers').text(Vars.modifier.current)
   $('#count_of_autoclickers').text(Vars.autoclick.agents.length)
@@ -88,6 +88,14 @@ const generic_button_press = function () {
     case 'per_click':
       console.log('per_click clicked')
       Vars.points += Vars.modifier.current * Vars.per_click * 100
+
+      if(Vars.modifier.cost/Vars.points > 100) {
+        Vars.modifier.cost = (((Vars.modifier.cost/Vars.points).toFixed(3) * 1000)/1000)
+      }
+      if(Vars.autoclick.cost/Vars.points > 100) {
+        Vars.autoclick.cost = (((Vars.autoclick.cost/Vars.points).toFixed(3) * 1000)/1000)
+      }
+
       updateButtonCost()
       updateDisplayVariables()
   }
