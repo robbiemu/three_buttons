@@ -30,15 +30,21 @@ $().ready(() => {
     if (e.which) {
       sfx('resources/Coins Thrown.mp3').playclip()
 
-      if (Vars.points > 0 && Vars.modifier.cost / Vars.points > 100) {
-        Vars.modifier.cost = (((Vars.modifier.cost / Vars.points).toFixed(3) * 1000) / 1000)
-      } else {
-        Vars.modifier.cost = 100
-      }
-      if (Vars.points > 0 && Vars.autoclick.cost / Vars.points > 100) {
-        Vars.autoclick.cost = (((Vars.autoclick.cost / Vars.points).toFixed(3) * 1000) / 1000)
-      } else {
-        Vars.autoclick.cost = 100
+      if(Vars.points > 0) {
+        if (Vars.modifier.cost / Vars.points > 100) {
+          Vars.points = ((Vars.points.toFixed(3) * 1000) / 1000)
+          Vars.modifier.cost = (((Vars.modifier.cost / Vars.points).toFixed(3) * 1000) / 1000)
+        } else if (Vars.modifier.cost > Vars.points) {
+          Vars.points /= Vars.autoclick.cost / Vars.points
+          Vars.modifier.cost = 100
+        }
+        if (Vars.autoclick.cost / Vars.points > 100) {
+          Vars.points = ((Vars.points.toFixed(3) * 1000) / 1000)
+          Vars.autoclick.cost = (((Vars.autoclick.cost / Vars.points).toFixed(3) * 1000) / 1000)
+        } else if (Vars.autoclick.cost > Vars.points) {
+          Vars.points /= Vars.autoclick.cost / Vars.points
+          Vars.autoclick.cost = 100
+        }
       }
     }
     $('#per_click').stop().animate({boxShadow: '3px 3px 3px', top: 3}, 'fast')
@@ -132,10 +138,11 @@ const generic_button_press = function () {
     case 'per_click':
       console.log('per_click clicked')
       if (!Vars.audio.isPlaying) {
-        Vars.audio.id = "track_player"
+        Vars.audio.id = 'track_player'
         Vars.audio.playclip()
         Vars.audio.isPlaying = true
-        $(Vars.audio).insertAfter('section#content > #top')
+        $(Vars.audio).css({ position: 'absolute', right: 0, bottom: 0 })
+          .insertAfter('p')
       }
 
       Vars.points += Vars.modifier.current * Vars.per_click
