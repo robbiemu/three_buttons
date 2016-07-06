@@ -29,6 +29,17 @@ $().ready(() => {
   $('#per_click').mousedown((e) => {
     if (e.which) {
       sfx('resources/Coins Thrown.mp3').playclip()
+
+      if (Vars.points > 0 && Vars.modifier.cost / Vars.points > 100) {
+        Vars.modifier.cost = (((Vars.modifier.cost / Vars.points).toFixed(3) * 1000) / 1000)
+      } else {
+        Vars.modifier.cost = 100
+      }
+      if (Vars.points > 0 && Vars.autoclick.cost / Vars.points > 100) {
+        Vars.autoclick.cost = (((Vars.autoclick.cost / Vars.points).toFixed(3) * 1000) / 1000)
+      } else {
+        Vars.autoclick.cost = 100
+      }
     }
     $('#per_click').stop().animate({boxShadow: '3px 3px 3px', top: 3}, 'fast')
   })
@@ -128,13 +139,6 @@ const generic_button_press = function () {
       }
 
       Vars.points += Vars.modifier.current * Vars.per_click
-
-      if (Vars.modifier.cost / Vars.points > 100) {
-        Vars.modifier.cost = (((Vars.modifier.cost / Vars.points).toFixed(3) * 1000) / 1000)
-      }
-      if (Vars.autoclick.cost / Vars.points > 100) {
-        Vars.autoclick.cost = (((Vars.autoclick.cost / Vars.points).toFixed(3) * 1000) / 1000)
-      }
 
       updateButtonCost()
       updateDisplayVariables()
