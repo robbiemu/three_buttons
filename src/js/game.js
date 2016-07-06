@@ -1,7 +1,11 @@
-/* global $, AutoclickAgent */
+/* global $, sfx, AutoclickAgent */
 $().ready(() => {
   console.log('loading')
   game_init()
+  Vars.audio = sfx('resources/Click Clock Wood.mp3')
+  Vars.audio.loop = true
+  Vars.audio.controls = true
+  Vars.audio.isPlaying = false
   $('.button').click(generic_button_press)
   $('#modifier').hover(() => {
     if (Vars.points >= Vars.modifier.cost) {
@@ -15,6 +19,11 @@ $().ready(() => {
       $(this).css('cursor', 'pointer')
     } else {
       $(this).css('cursor', 'default')
+    }
+  })
+  $('#per_click').mousedown((e) => {
+    if (e.which) {
+      sfx('resources/Coins Thrown.mp3').playclip()
     }
   })
 })
@@ -70,6 +79,10 @@ const generic_button_press = function () {
       let cost = Vars.modifier.cost
       if (Vars.points >= cost) {
         console.log('modifier clicked')
+        let audio = sfx('resources/Kirby Super Star SNES - Treasure!.mp3')
+        audio.volime = 0.02
+        audio.playclip()
+
         Vars.points -= cost
         Vars.modifier.current += Vars.modifier.increment
         Vars.modifier.cost = increaseCost(cost)
@@ -90,13 +103,20 @@ const generic_button_press = function () {
       break
     case 'per_click':
       console.log('per_click clicked')
+      if (!Vars.audio.isPlaying) {
+        Vars.audio.id = "track_player"
+        Vars.audio.playclip()
+        Vars.audio.isPlaying = true
+        $(Vars.audio).insertAfter('section#content > #top')
+      }
+
       Vars.points += Vars.modifier.current * Vars.per_click
 
-      if(Vars.modifier.cost/Vars.points > 100) {
-        Vars.modifier.cost = (((Vars.modifier.cost/Vars.points).toFixed(3) * 1000)/1000)
+      if (Vars.modifier.cost / Vars.points > 100) {
+        Vars.modifier.cost = (((Vars.modifier.cost / Vars.points).toFixed(3) * 1000) / 1000)
       }
-      if(Vars.autoclick.cost/Vars.points > 100) {
-        Vars.autoclick.cost = (((Vars.autoclick.cost/Vars.points).toFixed(3) * 1000)/1000)
+      if (Vars.autoclick.cost / Vars.points > 100) {
+        Vars.autoclick.cost = (((Vars.autoclick.cost / Vars.points).toFixed(3) * 1000) / 1000)
       }
 
       updateButtonCost()

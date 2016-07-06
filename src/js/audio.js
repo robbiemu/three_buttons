@@ -17,7 +17,6 @@ function sfx (sound) {
     }
     audio_element.load()
     audio_element.playclip = function () {
-      audio_element.volume = 0.05
       console.log(audio_element.volume)
       audio_element.pause()
       audio_element.currentTime = 0
