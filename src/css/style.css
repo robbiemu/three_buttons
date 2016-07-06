@@ -1,5 +1,5 @@
 :root {
-  --green-gray: rgb(127,200,127);
+  --greengray: rgb(127,200,127);
   --mauve: rgb(200,127,127);
 }
 
@@ -14,27 +14,32 @@ div#game {
   display: -webkit-flex;
   display: flex;
   flex-direction: row;
+  text-align: center;
 }
 
-div#game > div {
+
+
+div#game > div:not(top) {
   flex: 1;
   height: 100vh;
-  min-width: calc(100vw/3);
   min-height: 100vh;
+  padding: 4rem;
 }
 
 #modifier, #autoclick {
-  background-color: --mauve;
+  background-color: var(--mauve);
 }
 #per_click {
-  background-clor: --green-gray;
+  background-color: var(--greengray);
 }
 
 .round {
   border-radius: 50%;
+  padding: calc(1em/3);
 }
 
 .button {
+  display:inline-block;
   cursor: default;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
